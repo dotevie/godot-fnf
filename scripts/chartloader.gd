@@ -10,6 +10,15 @@ func _ready():
 	var file = FileAccess.open("res://assets/data/" + song_name + ".json", FileAccess.READ)
 	var content = file.get_as_text()
 	song = JSON.parse_string(content).get("song")
+	for i in song.get("notes"):
+		var contains_eligible:bool = false
+		for j in i.get("sectionNotes"):
+			if (!note_eligible(j[1], i.get("mustHitSection"))):
+				i.get("sectionNotes").erase(j)
+			else:
+				contains_eligible = true
+		if (not contains_eligible):
+			song.erase(i)
 	var bpm:int = song.get("bpm")
 	Conductor.bpm = bpm
 	Conductor.load_audio("res://assets/music/" + song_name + ".ogg")

@@ -15,7 +15,7 @@ func _process(delta):
 	+ " FPS\n" 
 	+ formatTime(Conductor.time / 1000) +
 	 " / " + formatTime(Conductor.music.stream.get_length()) 
-	+ "\n" + ChartLoader.song.get("song")
+	+ "\n" + ChartLoader.song.get("song") + ("" if Conductor.playback_rate == 1 else " (" + str(floor(Conductor.playback_rate * 100) / 100) + "x)")
 	+ "\nScore: " + str(RatingManager.score)
 	+ "\nMisses: " + str(RatingManager.misses)
 	+ "\nAccuracy: " + str(floor(RatingManager.adjusted_notes / RatingManager.total_notes * 10000) / 100) + "%"
