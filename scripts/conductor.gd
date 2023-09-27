@@ -26,9 +26,14 @@ func load_audio(path:String) -> void:
 	var audio:AudioStream = load(path)
 	music.stream = audio
 	
-
+var BUFFER:float = -1000000;
+func set_buffer():
+	BUFFER = -get_crochet() / 250 / playback_rate;
 func _process(delta):
 	if (not started):
+		BUFFER += delta
+		time = BUFFER * 1000 + offset
+		if (BUFFER < 0): return
 		started = true
 		music.pitch_scale = playback_rate
 		music.play()

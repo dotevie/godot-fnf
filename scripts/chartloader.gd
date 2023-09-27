@@ -22,11 +22,12 @@ func _ready():
 	var bpm:int = song.get("bpm")
 	Conductor.bpm = bpm
 	Conductor.load_audio("res://assets/music/" + song_name + ".ogg")
+	Conductor.set_buffer()
 
 @export var opponent_mode:bool = false
-func note_eligible(j:int, mhs:bool):
-	if (not opponent_mode): return (mhs and j < 4) or (not mhs and j > 3)
-	else: return (mhs and j > 3) or (not mhs and j < 4)
+func note_eligible(id:int, must_hit:bool):
+	if (not opponent_mode): return (must_hit and id < 4) or (not must_hit and id > 3)
+	else: return (must_hit and id > 3) or (not must_hit and id < 4)
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
