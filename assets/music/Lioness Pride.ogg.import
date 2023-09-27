@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://dcv5qi4w631k8"
+path="res://.godot/imported/Lioness Pride.ogg-de72dc97575525b1b29f742e47a696c0.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/music/Lioness Pride.ogg"
+dest_files=["res://.godot/imported/Lioness Pride.ogg-de72dc97575525b1b29f742e47a696c0.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4

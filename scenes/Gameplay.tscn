@@ -1,0 +1,116 @@
+[gd_scene load_steps=7 format=3 uid="uid://chkpxlma0aw55"]
+
+[ext_resource type="Script" path="res://scripts/conductor.gd" id="2_bftuc"]
+[ext_resource type="Script" path="res://scripts/chartloader.gd" id="3_h8r32"]
+[ext_resource type="Script" path="res://scripts/strum.gd" id="4_u8irc"]
+[ext_resource type="Script" path="res://scripts/ratingmanager.gd" id="5_c3laj"]
+[ext_resource type="Script" path="res://scripts/fps.gd" id="6_jjc0p"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_13328"]
+size = Vector2(100, 100)
+
+[node name="Scene" type="Node2D"]
+metadata/_edit_horizontal_guides_ = []
+
+[node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2(640, 360)
+ignore_rotation = false
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+
+[node name="Conductor" type="Node" parent="."]
+script = ExtResource("2_bftuc")
+offset = -120.0
+
+[node name="ChartLoader" type="Node" parent="."]
+script = ExtResource("3_h8r32")
+song_name = "Crystallized"
+opponent_mode = true
+
+[node name="FPS" type="Label" parent="."]
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 50.0
+offset_bottom = 33.0
+text = "FPS: 0
+00:00 / 00:00
+Placeholder
+Score: 0
+Misses: 0
+Accuracy: nan%
+curBeat: 0
+curStep: 0"
+script = ExtResource("6_jjc0p")
+
+[node name="Strums" type="Node2D" parent="."]
+position = Vector2(640, 0)
+
+[node name="Strum0" type="Node2D" parent="Strums"]
+position = Vector2(-180, 640)
+script = ExtResource("4_u8irc")
+
+[node name="Sprite2D" type="Sprite2D" parent="Strums/Strum0"]
+texture = SubResource("PlaceholderTexture2D_13328")
+
+[node name="Strum1" type="Node2D" parent="Strums"]
+position = Vector2(-60, 640)
+script = ExtResource("4_u8irc")
+key = 70
+
+[node name="Sprite2D" type="Sprite2D" parent="Strums/Strum1"]
+texture = SubResource("PlaceholderTexture2D_13328")
+
+[node name="Strum2" type="Node2D" parent="Strums"]
+position = Vector2(60, 640)
+script = ExtResource("4_u8irc")
+key = 74
+
+[node name="Sprite2D" type="Sprite2D" parent="Strums/Strum2"]
+texture = SubResource("PlaceholderTexture2D_13328")
+
+[node name="Strum3" type="Node2D" parent="Strums"]
+position = Vector2(180, 640)
+script = ExtResource("4_u8irc")
+key = 75
+
+[node name="Sprite2D" type="Sprite2D" parent="Strums/Strum3"]
+texture = SubResource("PlaceholderTexture2D_13328")
+
+[node name="RatingManager" type="Node2D" parent="."]
+position = Vector2(640, 360)
+scale = Vector2(3, 3)
+script = ExtResource("5_c3laj")
+
+[node name="RatingText" type="Label" parent="RatingManager"]
+z_index = 3925
+offset_left = -30.0
+offset_top = -30.0
+offset_right = 30.0
+offset_bottom = -7.0
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="ComboText" type="Label" parent="RatingManager"]
+z_index = 1220
+offset_left = -30.0
+offset_right = 30.0
+offset_bottom = 26.0
+text = "
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="MsText" type="Label" parent="RatingManager"]
+z_index = 3765
+offset_left = -15.0
+offset_top = 30.0
+offset_right = 45.0
+offset_bottom = 56.0
+scale = Vector2(0.5, 0.5)
+text = "
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true

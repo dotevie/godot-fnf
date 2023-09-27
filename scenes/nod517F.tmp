@@ -1,0 +1,54 @@
+[gd_scene load_steps=6 format=3 uid="uid://chkpxlma0aw55"]
+
+[ext_resource type="Script" path="res://scripts/conductor.gd" id="1_hmdmr"]
+[ext_resource type="AudioStream" uid="uid://b4dru3d3gm8qt" path="res://assets/music/Inst.ogg" id="1_qf8oh"]
+[ext_resource type="Script" path="res://scripts/chartloader.gd" id="2_anq8h"]
+[ext_resource type="Script" path="res://scripts/strum.gd" id="3_jbkjb"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_13328"]
+size = Vector2(110, 110)
+
+[node name="Scene" type="Node2D"]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_qf8oh")
+
+[node name="Conductor" type="Node" parent="."]
+script = ExtResource("1_hmdmr")
+offset = -120.0
+
+[node name="ChartLoader" type="Node" parent="."]
+script = ExtResource("2_anq8h")
+
+[node name="Strums" type="Node2D" parent="."]
+
+[node name="Strum0" type="Node2D" parent="Strums"]
+position = Vector2(460, 640)
+script = ExtResource("3_jbkjb")
+
+[node name="Sprite2D" type="Sprite2D" parent="Strums/Strum0"]
+texture = SubResource("PlaceholderTexture2D_13328")
+
+[node name="Strum1" type="Node2D" parent="Strums"]
+position = Vector2(580, 640)
+script = ExtResource("3_jbkjb")
+key = 70
+
+[node name="Sprite2D" type="Sprite2D" parent="Strums/Strum1"]
+texture = SubResource("PlaceholderTexture2D_13328")
+
+[node name="Strum2" type="Node2D" parent="Strums"]
+position = Vector2(700, 640)
+script = ExtResource("3_jbkjb")
+key = 74
+
+[node name="Sprite2D" type="Sprite2D" parent="Strums/Strum2"]
+texture = SubResource("PlaceholderTexture2D_13328")
+
+[node name="Strum3" type="Node2D" parent="Strums"]
+position = Vector2(820, 640)
+script = ExtResource("3_jbkjb")
+key = 75
+
+[node name="Sprite2D" type="Sprite2D" parent="Strums/Strum3"]
+texture = SubResource("PlaceholderTexture2D_13328")
