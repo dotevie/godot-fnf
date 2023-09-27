@@ -17,7 +17,7 @@ static var textures:Array[Texture2D] = [
 
 
 # Called when the node enters the scene tree for the first time.
-func _ready():
+func _ready() -> void:
 	spr.texture = textures[ID]
 	var size = spr.texture.get_size()
 	spr.scale = Vector2(110 / size.x, 110 / size.y)
@@ -25,18 +25,18 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta:float):
+func _process(delta:float) -> void:
 	distance = time - Conductor.time
 	position.x = $"../Strums".position.x + curStrum.position.x
 	position.y = curStrum.position.y - distance * 1.4
 		
-func hit():
+func hit() -> void:
 	rm.hit(distance)
 	destroy()
 
-func miss():
+func miss() -> void:
 	rm.miss()
 	destroy()
 	
-func destroy():
+func destroy() -> void:
 	queue_free()

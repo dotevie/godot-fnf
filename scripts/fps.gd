@@ -10,7 +10,7 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(delta) -> void:
 	set_text(str(Engine.get_frames_per_second()) 
 	+ " FPS\n" 
 	+ formatTime(Conductor.time / 1000) +

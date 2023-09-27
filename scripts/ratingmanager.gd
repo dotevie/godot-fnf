@@ -19,13 +19,7 @@ var ratings:Dictionary = {
 	"sick":  [350, 45, 1],
 }
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(delta) -> void:
 	ratingText.position.x = -30 * ratingText.scale.x
 	ratingText.position.y = -30 * ratingText.scale.y
 	comboText.position.x = -30 * comboText.scale.x
@@ -38,7 +32,7 @@ var total_notes:int = 0
 var adjusted_notes:float = 0
 var misses:int = 0
 
-func hit(window:int):
+func hit(window:int) -> void:
 	var rate:Array = []
 	var name:String = ""
 	for r in ratings.keys():
@@ -77,7 +71,7 @@ func hit(window:int):
 	tween5.tween_property(comboText, "scale", Vector2.ONE, .1)
 	tween6.tween_property(msText, "scale", Vector2(0.5, 0.5), .1)
 
-func miss():
+func miss() -> void:
 	combo = 0
 	ratingText.text = "miss"
 	comboText.text = "0"

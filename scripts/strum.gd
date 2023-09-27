@@ -14,14 +14,14 @@ static var textures:Array[Texture2D] = [
 static var pressedVec:Vector2 = Vector2(0.9, 0.9)
 
 # Called when the node enters the scene tree for the first time.
-func _ready():
+func _ready() -> void:
 	spr.texture = textures[ChartLoader.strums.find(self)]
 	var size = spr.texture.get_size()
 	spr.scale = Vector2(110 / size.x, 110 / size.y)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(delta) -> void:
 	if (Input.is_key_pressed(key) and not botplay): scale = pressedVec
 	else: scale = Vector2.ONE
 	for n in notes:
@@ -36,7 +36,7 @@ func _process(delta):
 				notes.erase(n)
 
 
-func _input(event):
+func _input(event) -> void:
 	if (len(notes) < 1 or botplay): return
 	var just_pressed = event.is_pressed() and not event.is_echo()
 	if (Input.is_key_pressed(key) and just_pressed):

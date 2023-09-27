@@ -27,9 +27,10 @@ func load_audio(path:String) -> void:
 	music.stream = audio
 	
 var BUFFER:float = -1000000;
-func set_buffer():
+func set_buffer() -> void:
 	BUFFER = -get_crochet() / 250 / playback_rate;
-func _process(delta):
+	
+func _process(delta) -> void:
 	if (not started):
 		BUFFER += delta
 		time = BUFFER * 1000 + offset
@@ -48,10 +49,10 @@ func _process(delta):
 	camera.zoom = Vector2(camZoom, camZoom)
 	
 var steps_hit:Array[int] = []
-func step_hit():
+func step_hit() -> void:
 	if (steps_hit.has(curStep)): return
 	steps_hit.append(curStep)
 	if (curStep % 4 == 0): beat_hit()
 		
-func beat_hit():
+func beat_hit() -> void:
 	if (curBeat % 4 == 0): camZoom += 0.015;
