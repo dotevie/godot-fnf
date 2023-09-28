@@ -4,7 +4,7 @@ class_name Strum extends Node2D
 var notes:Array[Note] = []
 @onready var spr:Sprite2D = $Sprite2D
 @onready var ChartLoader = $"../../ChartLoader"
-static var botplay:bool = false
+static var botplay:bool = true
 static var textures:Array[Texture2D] = [
 	preload("res://assets/images/strum0.png"),
 	preload("res://assets/images/strum1.png"),

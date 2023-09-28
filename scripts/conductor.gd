@@ -7,6 +7,7 @@ var bpm:float = 100
 @export var offset:float = 0 # in ms
 @export var playback_rate:float = 1.0
 var started:bool = false
+var bpm_changes:Array[Dictionary] = []
 
 var curBeat:int = 0
 var curStep:int = 0
@@ -15,6 +16,36 @@ var curDecBeat:float = 0
 var curDecStep:float = 0
 
 var camZoom:float = 1
+
+func map_bpm_changes(song:Dictionary):
+	bpm_changes = []
+	if (song == null or song.get("events") == null): return
+	var cur_bpm:float = song.get("bpm")
+	var total_steps:int = 0
+	var total_pos:float = 0
+	for i in song.get("notes"):
+		if (i.get("changeBPM") == null or i.get("bpm") == null): continue
+		var cbpm:bool = i.get("changeBPM")
+		var newb:float = i.get("bpm")
+		if (cbpm == true and newb != cur_bpm):
+			cur_bpm = float(i.get("bpm"))
+			bpm_changes.append({
+				"stepTime": total_steps,
+				"songTime": total_pos,
+				"bpm": cur_bpm,
+				"stepCrochet": float(60 / cur_bpm * 1000)
+			})
+		var delta_steps:int = roundf(get_section_beats(i) * 4)
+		total_steps += delta_steps
+		total_pos += ((60 / cur_bpm) * 1000 / 4) * delta_steps;
+	var ps = "NEW BPM MAP: "
+	for i in bpm_changes:
+		ps += str(i) + ", "
+	print(ps)
+
+func get_section_beats(arr:Dictionary):
+	if (arr.get("sectionBeats") == null): return 4
+	else: return float(arr.get("sectionBeats"))
 
 func get_crochet() -> float:
 	return 60 / bpm * 1000
@@ -40,7 +71,16 @@ func _process(delta) -> void:
 		music.play()
 	time = (music.get_playback_position() + AudioServer.get_time_since_last_mix() - AudioServer.get_output_latency()) * 1000 + offset
 	var oldStep:int = curStep
-	curDecStep = time / get_step_crochet()
+	var bpm_change:Dictionary = {"stepTime": 0, "songTime": 0, "bpm": 0}
+	for event in bpm_changes:
+		if (time >= event.get("songTime")):
+			bpm_change = event
+			break
+	var new_bpm:float = bpm_change.get('bpm')
+	if (new_bpm > 0 and bpm != new_bpm): bpm = new_bpm
+	var st:float = bpm_change.get("stepTime");
+	var tm:float = bpm_change.get("songTime");
+	curDecStep = st + (time - tm) / get_step_crochet()
 	curDecBeat = curDecStep / 4
 	curStep = floor(curDecStep)
 	curBeat = floor(curDecBeat)

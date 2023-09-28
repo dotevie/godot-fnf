@@ -21,10 +21,11 @@ ignore_rotation = false
 [node name="Conductor" type="Node" parent="."]
 script = ExtResource("2_bftuc")
 offset = -120.0
+playback_rate = 3.0
 
 [node name="ChartLoader" type="Node" parent="."]
 script = ExtResource("3_h8r32")
-song_name = "Foolhardy"
+song_name = "Quad Quarrel"
 
 [node name="FPS" type="Label" parent="."]
 offset_left = 10.0

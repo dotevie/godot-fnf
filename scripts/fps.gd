@@ -21,6 +21,7 @@ func _process(delta) -> void:
 	+ "\nAccuracy: " + str(floor(RatingManager.adjusted_notes / RatingManager.total_notes * 10000) / 100) + "%"
 	+ "\ncurBeat: " + str(Conductor.curBeat)
 	+ "\ncurStep: " + str(Conductor.curStep)
+	+ "\nBPM: " + str(Conductor.bpm)
 	)
 
 

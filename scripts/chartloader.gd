@@ -19,8 +19,9 @@ func _ready() -> void:
 				contains_eligible = true
 		if (not contains_eligible):
 			song.erase(i)
-	var bpm:int = song.get("bpm")
+	var bpm:float = song.get('bpm')
 	Conductor.bpm = bpm
+	Conductor.map_bpm_changes(song)
 	Conductor.load_audio("res://assets/music/" + song_name + ".ogg")
 	Conductor.set_buffer()
 

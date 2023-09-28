@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://dkvag8dt0707s"
+path="res://.godot/imported/Quad Quarrel.ogg-bb8424386275e0c8a38d7c92d8648a60.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/music/Quad Quarrel.ogg"
+dest_files=["res://.godot/imported/Quad Quarrel.ogg-bb8424386275e0c8a38d7c92d8648a60.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
