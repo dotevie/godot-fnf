@@ -60,6 +60,7 @@ func load_audio(path:String) -> void:
 var BUFFER:float = -1000000;
 func set_buffer() -> void:
 	BUFFER = -get_crochet() / 250 / playback_rate;
+
 	
 func _process(delta) -> void:
 	if (not started):
