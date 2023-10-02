@@ -10,7 +10,7 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta) -> void:
+func _process(_delta) -> void:
 	set_text(str(Engine.get_frames_per_second()) 
 	+ " FPS\n" 
 	+ formatTime(Conductor.time / 1000) +
@@ -27,8 +27,8 @@ func _process(delta) -> void:
 
 func formatTime(time:float) -> String:
 	var mins:int = int(floor(time) / 60)
-	var min:String = str(mins)
-	if len(min) < 2: min = "0" + min
+	var _min:String = str(mins)
+	if len(_min) < 2: _min = "0" + _min
 	var sec:String = str(floor(time - (mins * 60)))
 	if len(sec) < 2: sec = "0" + sec
-	return min + ":" + sec
+	return _min + ":" + sec

@@ -25,10 +25,13 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta:float) -> void:
+func _process(_delta:float) -> void:
 	distance = time - Conductor.time
 	position.x = $"../Strums".position.x + curStrum.position.x
 	position.y = curStrum.position.y - distance * 1.4
+	if (distance < -165):
+		curStrum.notes.erase(self)
+		miss()
 		
 func hit() -> void:
 	rm.hit(distance)

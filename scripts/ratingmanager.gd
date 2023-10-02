@@ -4,12 +4,12 @@ class_name RatingManager extends Node2D
 @onready var comboText:Label = $ComboText
 @onready var msText:Label = $MsText
 
-var tween = create_tween()
-var tween2 = create_tween()
-var tween3 = create_tween()
-var tween4 = create_tween()
-var tween5 = create_tween()
-var tween6 = create_tween()
+var tween:Tween;
+var tween2:Tween;
+var tween3:Tween;
+var tween4:Tween;
+var tween5:Tween;
+var tween6:Tween;
 
 
 var ratings:Dictionary = {
@@ -19,7 +19,7 @@ var ratings:Dictionary = {
 	"sick":  [350, 45, 1],
 }
 
-func _process(delta) -> void:
+func _process(_delta) -> void:
 	ratingText.position.x = -30 * ratingText.scale.x
 	ratingText.position.y = -30 * ratingText.scale.y
 	comboText.position.x = -30 * comboText.scale.x
@@ -32,20 +32,20 @@ var total_notes:int = 0
 var adjusted_notes:float = 0
 var misses:int = 0
 
-func hit(window:int) -> void:
+func hit(window:float) -> void:
 	var rate:Array = []
-	var name:String = ""
+	var rname:String = ""
 	for r in ratings.keys():
 		if (abs(window) < ratings.get(r)[1]):
 			rate = ratings.get(r)
-			name = r
+			rname = r
 	combo += 1
 	total_notes += 1
 	adjusted_notes += rate[2]
 	score += rate[0]
-	ratingText.text = name
+	ratingText.text = rname
 	comboText.text = str(combo)
-	msText.text = str(-window) + " ms"
+	msText.text = str(floor(-window * 100) / 100) + " ms"
 	if(tween): tween.kill()
 	if(tween2): tween2.kill()
 	if(tween3): tween3.kill()

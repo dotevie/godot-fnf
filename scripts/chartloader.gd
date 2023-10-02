@@ -42,14 +42,14 @@ func note_spawn(): # OD NOT CALL IN MAIN THREAD
 					if (j[1] > 3): j[1] -= 4
 					mutex.lock()
 					var n = Note.new()
-					n.position.y = -1000 # prevent flicker before _process runs
+					n.call_deferred('set_position', Vector2(0, -1000));
 					n.time = j[0]
 					n.ID = j[1]
 					to_add.append(n)
 					i.get("sectionNotes").erase(j);
 					mutex.unlock()
 
-func _process(delta) -> void:
+func _process(_delta) -> void:
 	for i in to_add:
 		strums[i.ID].notes.append(i)
 		$"../../Scene".add_child(i)

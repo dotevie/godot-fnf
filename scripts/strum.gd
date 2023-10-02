@@ -21,32 +21,17 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta) -> void:
+func _process(_delta) -> void:
 	if (Input.is_key_pressed(key) and not botplay): scale = pressedVec
 	else: scale = Vector2.ONE
-	for n in notes:
-		if (n != null and n.distance < -165):
-			n.miss()
-			notes.erase(n)
-		elif n == null:
-			notes.erase(n)
-		if botplay:
-			if (n.distance < 0):
-				n.hit()
-				notes.erase(n)
 
 
 func _input(event) -> void:
 	if (len(notes) < 1 or botplay): return
 	var just_pressed = event.is_pressed() and not event.is_echo()
 	if (Input.is_key_pressed(key) and just_pressed):
-		var lowest_dist:int = 166
-		var lowest_note:Note = null
-		for n in notes:
-			if (n.distance >= -165 and n.distance <= 165):
-				if (n.distance < lowest_dist):
-					lowest_dist = n.distance
-					lowest_note = n
-		if (lowest_note != null): lowest_note.hit()
-		notes.erase(lowest_note)
-		if (lowest_note != null): lowest_note.destroy()
+		if (notes[0].distance >= -165 and notes[0].distance <= 165):
+			var nt = notes[0]
+			if (nt != null): nt.hit()
+			notes.erase(nt)
+			if (nt != null): nt.destroy()
