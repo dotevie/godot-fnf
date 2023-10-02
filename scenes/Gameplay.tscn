@@ -25,6 +25,7 @@ offset = -120.0
 [node name="ChartLoader" type="Node" parent="."]
 script = ExtResource("3_h8r32")
 song_name = "Lioness Pride"
+opponent_mode = true
 
 [node name="FPS" type="Label" parent="."]
 offset_left = 10.0

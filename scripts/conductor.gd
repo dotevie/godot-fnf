@@ -17,7 +17,7 @@ var curDecStep:float = 0
 
 var camZoom:float = 1
 
-func map_bpm_changes(song:Dictionary):
+func map_bpm_changes(song:Dictionary) -> void:
 	bpm_changes = []
 	if (song == null or song.get("events") == null): return
 	var cur_bpm:float = song.get("bpm")
@@ -43,7 +43,7 @@ func map_bpm_changes(song:Dictionary):
 		ps += str(i) + ", "
 	print(ps)
 
-func get_section_beats(arr:Dictionary):
+func get_section_beats(arr:Dictionary) -> float:
 	if (arr.get("sectionBeats") == null): return 4
 	else: return float(arr.get("sectionBeats"))
 

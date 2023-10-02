@@ -32,8 +32,8 @@ var thread:Thread
 var mutex:Mutex
 var should_exit:bool = false
 
-var to_add:Array[Note] = []
-func note_spawn(): # OD NOT CALL IN MAIN THREAD
+@onready var main_scene:Node2D = $"../../Scene"
+func note_spawn() -> void: # OD NOT CALL IN MAIN THREAD
 	while true:
 		if (should_exit): break
 		for i in song.get("notes"):
@@ -45,17 +45,12 @@ func note_spawn(): # OD NOT CALL IN MAIN THREAD
 					n.call_deferred('set_position', Vector2(0, -1000));
 					n.time = j[0]
 					n.ID = j[1]
-					to_add.append(n)
+					strums[n.ID].notes.append(n)
+					main_scene.call_deferred("add_child", n)
 					i.get("sectionNotes").erase(j)
 					mutex.unlock()
 
-func _process(_delta) -> void:
-	for note in to_add:
-		strums[note.ID].notes.append(note)
-		$"../../Scene".add_child(note)
-		to_add.erase(note)
-
-func _exit_tree():
+func _exit_tree() -> void:
 	# Set exit condition to true.
 	should_exit = true # Protect with Mutex.
 	mutex.unlock()
