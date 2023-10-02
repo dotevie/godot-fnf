@@ -46,14 +46,14 @@ func note_spawn(): # OD NOT CALL IN MAIN THREAD
 					n.time = j[0]
 					n.ID = j[1]
 					to_add.append(n)
-					i.get("sectionNotes").erase(j);
+					i.get("sectionNotes").erase(j)
 					mutex.unlock()
 
 func _process(_delta) -> void:
-	for i in to_add:
-		strums[i.ID].notes.append(i)
-		$"../../Scene".add_child(i)
-		to_add.erase(i)
+	for note in to_add:
+		strums[note.ID].notes.append(note)
+		$"../../Scene".add_child(note)
+		to_add.erase(note)
 
 func _exit_tree():
 	# Set exit condition to true.
