@@ -25,24 +25,29 @@ func _ready() -> void:
 	Conductor.load_audio("res://assets/music/" + song_name + ".ogg")
 	Conductor.set_buffer()
 	thread = Thread.new()
+	mutex = Mutex.new()
 	thread.start(note_spawn)
 	
 var thread:Thread
+var mutex:Mutex
 var should_exit:bool = false
 
 var to_add:Array[Note] = []
-func note_spawn():
+func note_spawn(): # OD NOT CALL IN MAIN THREAD
 	while true:
 		if (should_exit): break
 		for i in song.get("notes"):
 			for j in i.get("sectionNotes"):
-				if Conductor.time - j[0] * 1.4 < -150 and note_eligible(j[1], i.get("mustHitSection")):
+				if (j[0] - Conductor.time) * 1.4 < 1280 and note_eligible(j[1], i.get("mustHitSection")):
 					if (j[1] > 3): j[1] -= 4
+					mutex.lock()
 					var n = Note.new()
+					n.position.y = -1000 # prevent flicker before _process runs
 					n.time = j[0]
 					n.ID = j[1]
 					to_add.append(n)
 					i.get("sectionNotes").erase(j);
+					mutex.unlock()
 
 func _process(delta) -> void:
 	for i in to_add:
@@ -53,6 +58,7 @@ func _process(delta) -> void:
 func _exit_tree():
 	# Set exit condition to true.
 	should_exit = true # Protect with Mutex.
+	mutex.unlock()
 	# Wait until it exits.
 	thread.wait_to_finish()
 	
