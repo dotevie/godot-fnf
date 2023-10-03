@@ -32,6 +32,9 @@ func _process(_delta:float) -> void:
 	if (distance < -165):
 		curStrum.notes.erase(self)
 		miss()
+	elif (Strum.botplay and distance <= 0):
+		curStrum.notes.erase(self)
+		hit()
 		
 func hit() -> void:
 	rm.hit(distance)
