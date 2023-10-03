@@ -4,7 +4,7 @@ class_name Strum extends Node2D
 var notes:Array[Note] = []
 @onready var spr:Sprite2D = $Sprite2D
 @onready var ChartLoader = $"../../ChartLoader"
-static var botplay:bool = true
+static var botplay:bool = false
 static var textures:Array[Texture2D] = [
 	preload("res://assets/images/strum0.png"),
 	preload("res://assets/images/strum1.png"),
@@ -19,17 +19,19 @@ func _ready() -> void:
 	var size = spr.texture.get_size()
 	spr.scale = Vector2(110 / size.x, 110 / size.y)
 
-
+var since_last_press:float = 0
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta) -> void:
+func _process(delta:float) -> void:
 	if (Input.is_key_pressed(key) and not botplay): scale = pressedVec
 	else: scale = Vector2.ONE
+	since_last_press += delta
 
 
 func _input(event) -> void:
 	if (len(notes) < 1 or botplay): return
 	var just_pressed = event.is_pressed() and not event.is_echo()
-	if (Input.is_key_pressed(key) and just_pressed):
+	if (Input.is_key_pressed(key) and just_pressed and since_last_press >= 0.1):
+		since_last_press = 0
 		if (notes[0].distance >= -165 and notes[0].distance <= 165):
 			var nt = notes[0]
 			if (nt != null): nt.hit()

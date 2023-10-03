@@ -20,12 +20,11 @@ ignore_rotation = false
 
 [node name="Conductor" type="Node" parent="."]
 script = ExtResource("2_bftuc")
-playback_rate = 2.0
+offset = -120.0
 
 [node name="ChartLoader" type="Node" parent="."]
 script = ExtResource("3_h8r32")
-song_name = "Lag Test"
-opponent_mode = true
+song_name = "Foolhardy"
 
 [node name="FPS" type="Label" parent="."]
 offset_left = 10.0
