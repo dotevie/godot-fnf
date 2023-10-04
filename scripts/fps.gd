@@ -4,12 +4,15 @@ class_name FPS extends Label
 @onready var ChartLoader = $"../ChartLoader"
 @onready var RatingManager = $"../RatingManager"
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta) -> void:
+func _ready():
+	Conductor.on_step_hit.connect(step_hit)
+	# doesn't really need to be every frame
+
+func step_hit(cur_step:int) -> void:
 	set_text(str(Engine.get_frames_per_second()) 
 	+ " FPS\n" 
-	+ formatTime(Conductor.time / 1000) +
-	 " / " + formatTime(Conductor.music.stream.get_length()) 
+	+ formatTime(Conductor.time / 1000 / Conductor.playback_rate) +
+	 " / " + formatTime(Conductor.music.stream.get_length() / Conductor.playback_rate) 
 	+ "\n" + ChartLoader.song.get("song") + ("" if Conductor.playback_rate == 1 else " (" + str(floor(Conductor.playback_rate * 100) / 100) + "x)")
 	+ "\nScore: " + str(RatingManager.score)
 	+ "\nMisses: " + str(RatingManager.misses)

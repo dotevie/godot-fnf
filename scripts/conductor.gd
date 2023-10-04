@@ -12,6 +12,9 @@ var bpm_changes:Array[Dictionary] = []
 var curBeat:int = 0
 var curStep:int = 0
 
+signal on_beat_hit(cur_beat:int)
+signal on_step_hit(cur_step:int)
+
 var curDecBeat:float = 0
 var curDecStep:float = 0
 
@@ -93,7 +96,9 @@ var steps_hit:Array[int] = []
 func step_hit() -> void:
 	if (steps_hit.has(curStep)): return
 	steps_hit.append(curStep)
+	on_step_hit.emit(curStep)
 	if (curStep % 4 == 0): beat_hit()
 		
 func beat_hit() -> void:
+	on_beat_hit.emit(curBeat)
 	if (curBeat % 4 == 0): camZoom += 0.015;

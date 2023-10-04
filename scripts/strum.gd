@@ -32,7 +32,7 @@ func _input(event) -> void:
 	var just_pressed = event.is_pressed() and not event.is_echo()
 	if (Input.is_key_pressed(key) and just_pressed and since_last_press >= 0.1):
 		since_last_press = 0
-		if (notes[0].distance >= -165 and notes[0].distance <= 165):
+		if (notes[0].adjusted_distance >= -165 and notes[0].adjusted_distance <= 165):
 			var nt = notes[0]
 			if (nt != null): nt.hit()
 			notes.erase(nt)
