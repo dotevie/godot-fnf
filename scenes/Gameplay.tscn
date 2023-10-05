@@ -21,11 +21,10 @@ ignore_rotation = false
 [node name="Conductor" type="Node" parent="."]
 script = ExtResource("2_bftuc")
 offset = -120.0
-playback_rate = 1.25
 
 [node name="ChartLoader" type="Node" parent="."]
 script = ExtResource("3_h8r32")
-song_name = "Gamebreaker"
+song_name = "Quaoar"
 opponent_mode = true
 
 [node name="FPS" type="Label" parent="."]

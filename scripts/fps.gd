@@ -6,6 +6,7 @@ class_name FPS extends Label
 
 func _ready():
 	Conductor.on_step_hit.connect(step_hit)
+	step_hit(-1)
 	# doesn't really need to be every frame
 
 func step_hit(cur_step:int) -> void:

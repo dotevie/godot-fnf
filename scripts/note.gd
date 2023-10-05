@@ -8,6 +8,7 @@ var ID:int = 0 # should match up with strum ID
 var notes:Array[Note] = []
 var spr:Sprite2D = Sprite2D.new()
 @onready var Conductor = get_node("../Conductor")
+@onready var ChartLoader = get_node("../ChartLoader")
 @onready var rm:RatingManager = get_node("../RatingManager")
 static var textures:Array[Texture2D] = [
 	preload("res://assets/images/note0.png"),
@@ -15,6 +16,7 @@ static var textures:Array[Texture2D] = [
 	preload("res://assets/images/note2.png"),
 	preload("res://assets/images/note3.png")
 ]
+var song_speed:float = 1
 
 
 # Called when the node enters the scene tree for the first time.
@@ -23,14 +25,15 @@ func _ready() -> void:
 	var size = spr.texture.get_size()
 	spr.scale = Vector2(110 / size.x, 110 / size.y)
 	add_child(spr)
+	song_speed = ChartLoader.song.get("speed")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta:float) -> void:
-	distance = time - Conductor.time # spawn time relative to sound pitch
+	distance = time - Conductor.time
 	adjusted_distance = distance / Conductor.playback_rate # raw ms value, use for judgements
 	position.x = $"../Strums".position.x + curStrum.position.x
-	position.y = curStrum.position.y - distance * 1.4
+	position.y = curStrum.position.y - (distance * 0.5 * song_speed)
 	if (distance < -165):
 		curStrum.notes.erase(self)
 		miss()
