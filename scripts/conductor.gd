@@ -38,7 +38,7 @@ func map_bpm_changes(song:Dictionary) -> void:
 				"bpm": cur_bpm,
 				"stepCrochet": float(60 / cur_bpm * 1000)
 			})
-		var delta_steps:int = roundf(get_section_beats(i) * 4)
+		var delta_steps:int = int(roundf(get_section_beats(i) * 4))
 		total_steps += delta_steps
 		total_pos += ((60 / cur_bpm) * 1000 / 4) * delta_steps;
 	var ps = "NEW BPM MAP: "
@@ -89,7 +89,7 @@ func _process(delta) -> void:
 	curStep = floor(curDecStep)
 	curBeat = floor(curDecBeat)
 	if (curStep != oldStep): step_hit()
-	camZoom = lerpf(1, camZoom, 1 - (delta * 3.125))
+	camZoom = lerpf(1, camZoom, min(1, max(0, 1 - (delta * 3.125))))
 	camera.zoom = Vector2(camZoom, camZoom)
 	
 var steps_hit:Array[int] = []

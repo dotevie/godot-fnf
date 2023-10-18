@@ -4,6 +4,9 @@ class_name RatingManager extends Node2D
 @onready var comboText:Label = $ComboText
 @onready var msText:Label = $MsText
 
+signal on_hit()
+signal on_miss()
+
 var tween:Tween;
 var tween2:Tween;
 var tween3:Tween;
@@ -18,13 +21,6 @@ var ratings:Dictionary = {
 	"good":  [200, 90, 0.67],
 	"sick":  [350, 45, 1],
 }
-
-func _process(_delta) -> void:
-	ratingText.position.x = -30 * ratingText.scale.x
-	ratingText.position.y = -30 * ratingText.scale.y
-	comboText.position.x = -30 * comboText.scale.x
-	msText.position.x = -30 *msText.scale.x
-	msText.position.y = 60 *msText.scale.y
 	
 var combo:int = 0
 var score:int = 0
@@ -63,13 +59,14 @@ func hit(window:float) -> void:
 	msText.modulate = Color.WHITE
 	ratingText.scale = Vector2(1.1, 1.1)
 	comboText.scale = Vector2(1.1, 1.1)
-	msText.scale = Vector2(0.55, 0.55)
+	msText.scale = Vector2(1.1, 1.1)
 	tween.tween_property(ratingText, "modulate", Color.TRANSPARENT, .5)
 	tween2.tween_property(comboText, "modulate", Color.TRANSPARENT, .5)
 	tween3.tween_property(msText, "modulate", Color.TRANSPARENT, .5)
 	tween4.tween_property(ratingText, "scale", Vector2.ONE, .1)
 	tween5.tween_property(comboText, "scale", Vector2.ONE, .1)
-	tween6.tween_property(msText, "scale", Vector2(0.5, 0.5), .1)
+	tween6.tween_property(msText, "scale", Vector2.ONE, .1)
+	on_hit.emit()
 
 func miss() -> void:
 	combo = 0
@@ -82,13 +79,11 @@ func miss() -> void:
 	if(tween3): tween3.kill()
 	tween = create_tween()
 	tween2 = create_tween()
-	tween3 = create_tween()
 	if(tween4): tween4.kill()
 	if(tween5): tween5.kill()
 	if(tween6): tween6.kill()
 	tween4 = create_tween()
 	tween5 = create_tween()
-	tween6 = create_tween()
 	var col:Color = Color.RED
 	col.a = 0
 	ratingText.modulate = Color.RED
@@ -100,4 +95,5 @@ func miss() -> void:
 	tween2.tween_property(comboText, "modulate", col, .5)
 	tween4.tween_property(ratingText, "scale", Vector2.ONE, .1)
 	tween5.tween_property(comboText, "scale", Vector2.ONE, .1)
+	on_miss.emit()
 
