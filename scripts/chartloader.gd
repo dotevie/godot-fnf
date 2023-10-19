@@ -38,10 +38,10 @@ func note_spawn() -> void: # OD NOT CALL IN MAIN THREAD
 		if (should_exit): break
 		for i in song.get("notes"):
 			for j in i.get("sectionNotes"):
-				if (j[0] - Conductor.time) * 1.4 < 1280 and note_eligible(j[1], i.get("mustHitSection")):
+				if (j[0] - Conductor.time) * 0.5 * float(song.get("speed")) < 720 and note_eligible(j[1], i.get("mustHitSection")):
 					if (j[1] > 3): j[1] -= 4
 					mutex.lock()
-					var n = Note.new()
+					var n := Note.new()
 					n.call_deferred('set_position', Vector2(0, -1000));
 					n.time = j[0]
 					n.ID = j[1]

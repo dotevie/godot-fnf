@@ -57,7 +57,7 @@ offset = -120.0
 
 [node name="ChartLoader" type="Node" parent="."]
 script = ExtResource("3_h8r32")
-song_name = "Crystallized"
+song_name = "DTABTR"
 
 [node name="FPS" type="Label" parent="."]
 offset_left = 10.0
