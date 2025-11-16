@@ -11,6 +11,6 @@ func format_time(time:float) -> String:
 	var mins:int = int(floor(time) / 60)
 	var _min:String = str(mins)
 	if len(_min) < 2: _min = "0" + _min
-	var sec:String = str(floor(time - (mins * 60)))
+	var sec:String = str(int(floor(time - (mins * 60))))
 	if len(sec) < 2: sec = "0" + sec
 	return _min + ":" + sec

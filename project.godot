@@ -12,7 +12,7 @@ config_version=5
 
 config/name="Rhythm Game"
 run/main_scene="res://scenes/Gameplay.tscn"
-config/features=PackedStringArray("4.1", "Mobile")
+config/features=PackedStringArray("4.5", "Mobile")
 boot_splash/bg_color=Color(0.243137, 0.537255, 0.843137, 1)
 config/icon="res://icon.svg"
 

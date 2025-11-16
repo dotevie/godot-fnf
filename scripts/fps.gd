@@ -5,7 +5,7 @@ class_name FPS extends Label
 @onready var RatingManager = $"../RatingManager"
 
 func _process(_delta) -> void:
-	set_text(str(Engine.get_frames_per_second()) 
+	set_text(str(int(Engine.get_frames_per_second()))
 	+ " FPS\n" 
 	# + formatTime(Conductor.time / 1000 / Conductor.playback_rate) +
 	#  " / " + formatTime(Conductor.music.stream.get_length() / Conductor.playback_rate) 

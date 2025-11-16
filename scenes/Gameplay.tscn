@@ -1,16 +1,16 @@
 [gd_scene load_steps=20 format=3 uid="uid://chkpxlma0aw55"]
 
-[ext_resource type="Script" path="res://scripts/sound_tray.gd" id="1_4ujnp"]
+[ext_resource type="Script" uid="uid://cho7nraos4bbl" path="res://scripts/sound_tray.gd" id="1_4ujnp"]
 [ext_resource type="FontFile" uid="uid://ct3wfruxrxodu" path="res://assets/fonts/vcr.ttf" id="2_22o1c"]
-[ext_resource type="Script" path="res://scripts/conductor.gd" id="2_bftuc"]
-[ext_resource type="Script" path="res://scripts/chartloader.gd" id="3_h8r32"]
-[ext_resource type="Script" path="res://scripts/strum.gd" id="4_u8irc"]
-[ext_resource type="Script" path="res://scripts/ratingmanager.gd" id="5_c3laj"]
-[ext_resource type="Script" path="res://scripts/fps.gd" id="6_jjc0p"]
+[ext_resource type="Script" uid="uid://bjv84e5xroc0x" path="res://scripts/conductor.gd" id="2_bftuc"]
+[ext_resource type="Script" uid="uid://cp7qta543bjbg" path="res://scripts/chartloader.gd" id="3_h8r32"]
+[ext_resource type="Script" uid="uid://d2bfyojd0n6qe" path="res://scripts/strum.gd" id="4_u8irc"]
+[ext_resource type="Script" uid="uid://deerihrunli36" path="res://scripts/ratingmanager.gd" id="5_c3laj"]
+[ext_resource type="Script" uid="uid://3iyi6826vxbf" path="res://scripts/fps.gd" id="6_jjc0p"]
 [ext_resource type="AudioStream" uid="uid://dktsdbwv6i11n" path="res://assets/sound/volumeUp.ogg" id="8_5vx40"]
 [ext_resource type="AudioStream" uid="uid://du4vndut2cfnj" path="res://assets/sound/volumeDown.ogg" id="9_albnk"]
-[ext_resource type="Script" path="res://scripts/score_text.gd" id="10_10ei3"]
-[ext_resource type="Script" path="res://scripts/time_text.gd" id="11_8xkrs"]
+[ext_resource type="Script" uid="uid://bhw74i8pfhv7v" path="res://scripts/score_text.gd" id="10_10ei3"]
+[ext_resource type="Script" uid="uid://bsxf8cf765syp" path="res://scripts/time_text.gd" id="11_8xkrs"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_uuhas"]
 outline_size = 4
@@ -53,11 +53,11 @@ ignore_rotation = false
 
 [node name="Conductor" type="Node" parent="."]
 script = ExtResource("2_bftuc")
-offset = -120.0
+offset = -80.0
 
 [node name="ChartLoader" type="Node" parent="."]
 script = ExtResource("3_h8r32")
-song_name = "DTABTR"
+song_name = "Lioness Pride"
 
 [node name="FPS" type="Label" parent="."]
 offset_left = 10.0

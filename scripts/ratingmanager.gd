@@ -96,4 +96,3 @@ func miss() -> void:
 	tween4.tween_property(ratingText, "scale", Vector2.ONE, .1)
 	tween5.tween_property(comboText, "scale", Vector2.ONE, .1)
 	on_miss.emit()
-

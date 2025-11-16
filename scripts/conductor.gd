@@ -20,6 +20,11 @@ var curDecStep:float = 0
 
 var camZoom:float = 1
 
+func _ready():
+	# we dont need physics, possibly faster game speed?
+	PhysicsServer2D.set_active(false)
+	PhysicsServer3D.set_active(false)
+
 func map_bpm_changes(song:Dictionary) -> void:
 	bpm_changes = []
 	if (song == null or song.get("events") == null): return
